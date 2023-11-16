@@ -1,6 +1,8 @@
 # First stage builds the application
-FROM registry.redhat.io/rhel9/nodejs-18:1-48.1684739667 as builder
 # FROM registry.redhat.io/rhel8/nodejs-18:1-40 as builder
+# FROM registry.redhat.io/rhel9/nodejs-18:1-48.1684739667 as builder
+FROM registry.access.redhat.com/ubi9/nodejs-18:1-80.1699550448 as builder
+
 
 # Add application sources
 # ADD . $HOME
@@ -17,9 +19,10 @@ COPY tsconfig.spec.json $HOME
 RUN npm install
 
 # Second stage copies the application to the minimal image
-FROM registry.redhat.io/rhel9/nodejs-18-minimal:1-51
-# FROM registry.redhat.io/rhel8/nodejs-18-minimal:1-40
 # FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:1-36
+# FROM registry.redhat.io/rhel8/nodejs-18-minimal:1-40
+# FROM registry.redhat.io/rhel9/nodejs-18-minimal:1-51
+FROM registry.redhat.io/rhel8/nodejs-18-minimal:1-86
 
 # Copy the application source and build artifacts from the builder image to this one
 COPY --from=builder $HOME $HOME
