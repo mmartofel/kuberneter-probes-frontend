@@ -22,7 +22,8 @@ RUN npm install
 # FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:1-36
 # FROM registry.redhat.io/rhel8/nodejs-18-minimal:1-40
 # FROM registry.redhat.io/rhel9/nodejs-18-minimal:1-51
-FROM registry.redhat.io/rhel8/nodejs-18-minimal:1-86
+# FROM registry.redhat.io/rhel8/nodejs-18-minimal:1-86
+FROM registry.redhat.io/rhel8/nodejs-18-minimal:latest
 
 # Copy the application source and build artifacts from the builder image to this one
 COPY --from=builder $HOME $HOME
